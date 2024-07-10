@@ -16,7 +16,8 @@ const app = express()
 app.get('/',(req,res)=>{
     res.send("this is backend point")
 })
-app.use(cors({
+app.use(cors(
+    {
 
     origin :["https://mdrabilblogs.vercel.app"],
     methods:["GET", "POST", "UPDATE" ,"DELETE"],
@@ -26,11 +27,13 @@ app.use(cors({
 app.use(bodyParser.json())
 
 
+
 mongoose.connect(process.env.URL).then(()=>{
     console.log("db is connected")
 }).catch((e)=>{
     console.log("db is not connect")
 })
+
 
 app.get('/',(req,res)=>{
     res.send("hello")
@@ -187,7 +190,7 @@ try {
 
 
 app.put("/update/:id", async (req,res)=>{
-    const {getone}  = req.body
+    const {userid,post} = req.body ;
 
     try {
         const id = req.params.id
@@ -196,7 +199,7 @@ const check =await loginpost.findById(id)
 
 if(check){
 
-await loginpost.findByIdAndUpdate(id,req.body,{new:true})
+await loginpost.findByIdAndUpdate(id,req.body)
 return res.json("update")
 
 
