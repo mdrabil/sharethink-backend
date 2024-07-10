@@ -197,7 +197,7 @@ const check =await loginpost.findById(id)
 if(check){
 
 const updatedata =await loginpost.findByIdAndUpdate(id,req.body,{new:true})
-
+updatedata.save()
 return res.json("update")
 
 
