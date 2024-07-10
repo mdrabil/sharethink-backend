@@ -187,7 +187,7 @@ try {
 
 
 app.put("/update/:id", async (req,res)=>{
-    // const {email,post}  = req.body
+    const {email,post}  = req.body
 
     try {
         const id = req.params.id
@@ -197,7 +197,6 @@ const check =await loginpost.findById(id)
 if(check){
 
 const updatedata =await loginpost.findByIdAndUpdate(id,req.body,{new:true})
-console.log(updatedata)
 
 return res.json("update")
 
