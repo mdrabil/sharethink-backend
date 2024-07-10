@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 })
 app.use(cors({
 
-    origin :["https://sharethink-blog.vercel.app"],
+    origin :["https://mdrabilblogs.vercel.app"],
     methods:["GET", "POST", "UPDATE" ,"DELETE"],
     credentials:true
 }
