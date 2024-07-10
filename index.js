@@ -187,7 +187,7 @@ try {
 
 
 app.put("/update/:id", async (req,res)=>{
-    const {userid,post}  = req.body
+    const {getone}  = req.body
 
     try {
         const id = req.params.id
