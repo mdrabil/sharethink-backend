@@ -32,7 +32,7 @@ mongoose.connect((process.env.URL)).then(()=>{
 
 app.post("/signup",async (req,res)=>{
     const {userid,email,password,cpassword} = req.body;
-    
+    res.send("nice")
     if(!userid || !email || !password || !cpassword){
     
 return res.json({msg:"fill the all field"})
