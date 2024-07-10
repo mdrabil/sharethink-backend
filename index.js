@@ -14,7 +14,13 @@ import bcrypt from 'bcryptjs'
 const app = express()
 
 
-app.use(cors())
+app.use(cors({
+
+    origin :["https://sharethink-blog.vercel.app/"],
+    methods:["GET", "POST", "UPDATE" ,"DELETE"],
+    credentials:true
+}
+))
 app.use(bodyParser.json())
 
 mongoose.connect((process.env.URL)).then(()=>{
