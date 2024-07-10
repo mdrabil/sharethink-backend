@@ -13,7 +13,9 @@ import bcrypt from 'bcryptjs'
 
 const app = express()
 
-
+app.get('/',(req,res)=>{
+    res.send("this is backend point")
+})
 app.use(cors({
 
     origin :["https://sharethink-blog.vercel.app"],
