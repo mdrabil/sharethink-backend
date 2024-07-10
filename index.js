@@ -26,7 +26,7 @@ app.use(cors({
 app.use(bodyParser.json())
 
 
-mongoose.connect(`${(process.env.URL)}`).then(()=>{
+mongoose.connect(process.env.URL).then(()=>{
     console.log("db is connected")
 }).catch((e)=>{
     console.log("db is not connect")
