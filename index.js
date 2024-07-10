@@ -29,7 +29,7 @@ mongoose.connect((process.env.URL)).then(()=>{
     console.log("db is not connect")
 })
 
-app.post('/',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send("hello")
 })
 
