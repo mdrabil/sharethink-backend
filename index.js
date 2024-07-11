@@ -20,7 +20,7 @@ app.use(cors(
     {
 
     origin :["https://mdrabilblogs.vercel.app"],
-    methods:["GET", "POST", "UPDATE" ,"DELETE"],
+    methods:["GET", "POST", "PUT" ,"DELETE"],
     credentials:true
 }
 ))
@@ -44,7 +44,7 @@ app.post("/signup",async (req,res)=>{
 
     if(!userid || !email || !password || !cpassword){
     
-return res.json({msg:"fill the all field"})
+return res.json({msg:"FILL THE ALL FIELD"})
       }
     const hashpass = await bcrypt.hash(password,10)
 
@@ -74,17 +74,17 @@ return res.json({msg:"fill the all field"})
             
             
         }
-        return res.json({status:false,msg:"password is not same"})
+        return res.json({status:false,msg:"PASSWORD NOT MATCHING"})
     }
-    return res.json({msg:"userid already taken"})
+    return res.json({msg:"USER ID TAKEN"})
 }
-    return res.json({msg:"email already axist"})
+    return res.json({msg:"EMAIL IS ALREADY EXIST"})
 
     
     
     } catch (error) {
       
-        return res.json({msg:"user id is short",error})
+        return res.json({msg:"SERVER ERROR TO SIGN",error})
         
     }
     
@@ -133,7 +133,7 @@ return res.json({msg:"fill the all field"})
 app.post("/post",async (req,res)=>{
     const {userid,password,post} = req.body ;
     if(!userid || !password || !post){
-        return res.json({msg:"fill the all field"})
+        return res.json({msg:"FILL THE ALL FIELD"})
     }
     
    try {
@@ -155,13 +155,13 @@ app.post("/post",async (req,res)=>{
 
 
         }
-        return res.json({msg:"password is wrong"})
+        return res.json({msg:"INCORRECT PASSWORD"})
 
     }
-                return res.json({msg:"please create user id"})
+                return res.json({msg:"INVALID USER"})
 
    } catch (error) {
-    return res.json({msg:"something went wrong"})
+    return res.json({msg:"SERVER ERROR TO POST"})
     
    }
         
@@ -180,7 +180,7 @@ try {
 
        return res.json(allpost)
    }
-   return res.json({msg:"not post get"})
+   return res.json({msg:"USER NOT FOUND"})
     
 } catch (error) {
     
@@ -199,13 +199,13 @@ const check =await loginpost.findById(id)
 
 if(check){
 
-const dataupdate =await loginpost.findByIdAndUpdate(id,req.body,{new:true})
+const dataupdate =await loginpost.findByIdAndUpdate({_id:id},req.body,{new:true})
 return res.json("update")
 
 
 }
     } catch (error) {
-return res.json("error")
+return res.json("SERVER ERROR TO UPDATE")
         
     }
 })
@@ -224,14 +224,14 @@ if(checkpassowrd){
 
     return res.json("pass")
 }
-return res.json({msg:"user invalid"})
+return res.json({msg:"INVALID USER"})
     }
-return res.json({msg: "not a wright user"})
+return res.json({msg: "INVALID USER"})
 }
-return res.json({msg: "user is not register"})
+return res.json({msg: "HACKER "})
 
     } catch (error) {
-return res.json("error".error)
+return res.json("SERVER ERROR TO USER".error)
         
     }
 })
@@ -308,7 +308,7 @@ else{
     var mailOptions = {
           from: `${(process.env.EMAIL)}`,
           to:email,
-          subject: 'forget your passowrd',
+          subject: 'FORGET PASSWORD OTP',
           text:`${random}`
         };
     
@@ -327,7 +327,7 @@ else{
                     const check = await User.findOne({email:email})
                     
                     if(!check){
-                        return res.json({msg:"plese check email id"})
+                        return res.json({msg:"PLEASE CHECK YOUR EMAIL"})
                     }
 
                     try {
@@ -339,10 +339,10 @@ else{
     }
     else{
 
-      return  res.json({msg:"otp is missing"})
+      return  res.json({msg:"OTP IS MISSING"})
     }
 } catch (error) {
-    return res.json({msg:"email is not adding"})
+    return res.json({msg:"INVALID EMAIL"})
     
 }
 
@@ -365,7 +365,7 @@ app.post('/reset-password/:id',async (req,res)=>{
 const check = await User.findById(id)
 if(!check){
 
-    return res.json({msg:"user not found heh"})
+    return res.json({msg:"USER NOT FOUND"})
 }
 else{
     try {
@@ -392,7 +392,7 @@ else{
     
     
 } catch (error) {
-return res.json({msg:"user not found hello"})
+return res.json({msg:"SERVER ERROR TO RESET PASSWORD"})
     
 }
 }
@@ -413,7 +413,7 @@ if(email==check.email){
 
 return res.json({msg:"INCORECT EMAIL "})
 } catch (error) {
-    return res.json({msg:"not a user"})
+    return res.json({msg:"SERVER ERRROR TO GENERATE OTP"})
 }
 })
 
