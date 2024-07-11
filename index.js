@@ -300,13 +300,13 @@ else{
             var transporter = nodemailer.createTransport({
                   service: 'gmail',
       auth: {
-        user: (process.env.EMAIL),
-        pass: (process.env.AUTH),
+        user: process.env.EMAIL,
+        pass: process.env.AUTH,
       }
     });
 
     var mailOptions = {
-          from: `${(process.env.EMAIL)}`,
+          from: process.env.EMAIL,
           to:email,
           subject: 'FORGET PASSWORD OTP',
           text:`${random}`
